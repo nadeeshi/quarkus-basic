@@ -1,5 +1,6 @@
 package com.nadee.lil.quarkus;
 
+import com.nadee.lil.quarkus.util.FizzBuzzExecutor;
 import com.nadee.lil.quarkus.util.GreetingUtil;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -25,14 +26,18 @@ public class QuarkusApp implements QuarkusApplication {
 
     GreetingUtil greetingUtil;
 
-    public QuarkusApp(GreetingUtil greetingUtil) {
+    FizzBuzzExecutor fizzBuzzExecutor;
+
+    public QuarkusApp(GreetingUtil greetingUtil, FizzBuzzExecutor fizzBuzzExecutor) {
         super();
         this.greetingUtil = greetingUtil;
+        this.fizzBuzzExecutor = fizzBuzzExecutor;
     }
 
     @Override
     public int run(String... args) throws Exception {
         System.out.println(this.greetingUtil.getGreeting());
+        this.fizzBuzzExecutor.execute();
         return 0;
     }
 }
