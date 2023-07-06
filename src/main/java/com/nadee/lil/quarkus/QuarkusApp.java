@@ -48,8 +48,12 @@ public class QuarkusApp implements QuarkusApplication {
         System.out.println(this.greetingUtil.getGreeting());
         this.fizzBuzzExecutor.execute();
 
-        List<Service> services = this.serviceRepository.getAllServices();
+       // List<Service> services = this.serviceRepository.getAllServices();
+        List<Service> services = this.serviceRepository.listAll();
         services.forEach(System.out::println);
+
+        Service service = this.serviceRepository.findById(2L);
+        System.out.println(service);
 
         return 0;
     }
