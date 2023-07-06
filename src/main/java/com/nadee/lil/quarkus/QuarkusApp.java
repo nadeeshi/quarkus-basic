@@ -1,9 +1,14 @@
 package com.nadee.lil.quarkus;
 
+import com.nadee.lil.quarkus.data.entity.Service;
+import com.nadee.lil.quarkus.data.repository.ServiceRepository;
 import com.nadee.lil.quarkus.util.FizzBuzzExecutor;
 import com.nadee.lil.quarkus.util.GreetingUtil;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
+import jakarta.enterprise.context.control.ActivateRequestContext;
+
+import java.util.List;
 
 /**
  * @QuarkusMain - this is going to give us a command line version of our application
@@ -28,16 +33,24 @@ public class QuarkusApp implements QuarkusApplication {
 
     FizzBuzzExecutor fizzBuzzExecutor;
 
-    public QuarkusApp(GreetingUtil greetingUtil, FizzBuzzExecutor fizzBuzzExecutor) {
+    private final ServiceRepository serviceRepository;
+
+    public QuarkusApp(GreetingUtil greetingUtil, FizzBuzzExecutor fizzBuzzExecutor, ServiceRepository serviceRepository) {
         super();
         this.greetingUtil = greetingUtil;
         this.fizzBuzzExecutor = fizzBuzzExecutor;
+        this.serviceRepository = serviceRepository;
     }
 
     @Override
+    @ActivateRequestContext
     public int run(String... args) throws Exception {
         System.out.println(this.greetingUtil.getGreeting());
         this.fizzBuzzExecutor.execute();
+
+        List<Service> services = this.serviceRepository.getAllServices();
+        services.forEach(System.out::println);
+
         return 0;
     }
 }
