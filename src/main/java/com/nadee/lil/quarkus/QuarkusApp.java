@@ -1,7 +1,11 @@
 package com.nadee.lil.quarkus;
 
+import com.nadee.lil.quarkus.data.entity.Customer;
 import com.nadee.lil.quarkus.data.entity.Service;
+import com.nadee.lil.quarkus.data.entity.Vendor;
+import com.nadee.lil.quarkus.data.repository.CustomerRepository;
 import com.nadee.lil.quarkus.data.repository.ServiceRepository;
+import com.nadee.lil.quarkus.data.repository.VendorRepository;
 import com.nadee.lil.quarkus.util.FizzBuzzExecutor;
 import com.nadee.lil.quarkus.util.GreetingUtil;
 import io.quarkus.runtime.QuarkusApplication;
@@ -35,11 +39,18 @@ public class QuarkusApp implements QuarkusApplication {
 
     private final ServiceRepository serviceRepository;
 
-    public QuarkusApp(GreetingUtil greetingUtil, FizzBuzzExecutor fizzBuzzExecutor, ServiceRepository serviceRepository) {
+    private final CustomerRepository customerRepository;
+
+    private final VendorRepository vendorRepository;
+
+    public QuarkusApp(GreetingUtil greetingUtil, FizzBuzzExecutor fizzBuzzExecutor, ServiceRepository serviceRepository,
+                      CustomerRepository customerRepository, VendorRepository vendorRepository) {
         super();
         this.greetingUtil = greetingUtil;
         this.fizzBuzzExecutor = fizzBuzzExecutor;
         this.serviceRepository = serviceRepository;
+        this.customerRepository = customerRepository;
+        this.vendorRepository = vendorRepository;
     }
 
     @Override
@@ -48,12 +59,26 @@ public class QuarkusApp implements QuarkusApplication {
         System.out.println(this.greetingUtil.getGreeting());
         this.fizzBuzzExecutor.execute();
 
+        System.out.println("**\nServices**");
        // List<Service> services = this.serviceRepository.getAllServices();
         List<Service> services = this.serviceRepository.listAll();
         services.forEach(System.out::println);
 
         Service service = this.serviceRepository.findById(2L);
         System.out.println(service);
+
+
+        System.out.println("**\nVendors**");
+        Vendor vendor = this.vendorRepository.findByName("QUAXO");
+        System.out.println("Vendor by name: " + vendor);
+
+        vendor = this.vendorRepository.findByEmail("vharrison1@geocities.com");
+        System.out.println("Vendor by email: " + vendor);
+
+
+        System.out.println("**\nVendors**");
+        Customer customer = this.customerRepository.findByEmail("montes.nascetur@semperrutrum.net");
+        System.out.println("Customer by email: " + customer);
 
         return 0;
     }
