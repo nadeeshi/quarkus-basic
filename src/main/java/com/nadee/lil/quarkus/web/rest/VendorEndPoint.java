@@ -1,4 +1,4 @@
-package com.nadee.lil.quarkus.data.web.rest;
+package com.nadee.lil.quarkus.web.rest;
 
 import com.nadee.lil.quarkus.data.entity.Vendor;
 import com.nadee.lil.quarkus.data.repository.VendorRepository;
