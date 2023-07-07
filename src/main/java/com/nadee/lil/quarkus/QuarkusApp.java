@@ -30,7 +30,7 @@ import java.util.List;
  *   I'm just going to use built into my IDE. So we'll let this start up and it's going to bring out a bunch of dependencies and then it's going to execute.
  */
 
-@QuarkusMain
+/*@QuarkusMain
 public class QuarkusApp implements QuarkusApplication {
 
     GreetingUtil greetingUtil;
@@ -82,4 +82,4 @@ public class QuarkusApp implements QuarkusApplication {
 
         return 0;
     }
-}
+}*/
