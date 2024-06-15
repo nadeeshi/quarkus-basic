@@ -6,8 +6,8 @@
   <artifactId>quarkus-app</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <properties>
-    <compiler-plugin.version>3.11.0</compiler-plugin.version>
-    <maven.compiler.release>17</maven.compiler.release>
+    <compiler-plugin.version>3.11.0</compiler-plugin.version> <!-- maven version -->
+    <maven.compiler.release>17</maven.compiler.release> <!--java JDK version -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
@@ -28,14 +28,22 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+    <!--Quarkus use dependency injection using ArC
+      ArC is a container for CDI (Context and Dependency injection).
+      This is bootstrapped at runtime, used to manage to Beans (plain old java object or POJO), producer methods & producer fields
+      use with jakarta / jakarta EE(previously java EE) use for management of persistence and object/relational mapping in Java(R) environments-->
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-arc</artifactId>
     </dependency>
+
+    <!-- This is for manage to RDBMS with postgress db -->
    <!-- <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-hibernate-orm</artifactId>
     </dependency> -->
+
+
     <dependency>
       <groupId>io.quarkus</groupId>
       <artifactId>quarkus-resteasy-reactive</artifactId>
