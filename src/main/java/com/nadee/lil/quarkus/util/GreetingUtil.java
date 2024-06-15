@@ -6,6 +6,10 @@ import org.eclipse.microprofile.config.inject.ConfigProperty;
 @ApplicationScoped
 public class GreetingUtil {
 
+    /**
+     * @ConfigProperty - inject this property into our class variable
+     * read property value from application.properties
+     */
     @ConfigProperty(name="greeting.name", defaultValue = "Student")
     String greetingName;
 
