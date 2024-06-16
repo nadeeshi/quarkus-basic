@@ -14,6 +14,7 @@ import java.util.List;
 @ApplicationScoped
 public class ServiceRepository implements PanacheRepository<Service> {
 
+    // using hibernate orm and JPA
     // private final EntityManager entityManager;
 
     private final ServiceRepository serviceRepository;

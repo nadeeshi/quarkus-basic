@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+/**
+ * Data table
+ */
 @Entity
 @Table(name = "services")
 public class Service {
