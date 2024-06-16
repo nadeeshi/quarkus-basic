@@ -64,6 +64,7 @@ public class QuarkusApp implements QuarkusApplication {
         List<Service> services = this.serviceRepository.listAll();
         services.forEach(System.out::println);
 
+        // read data through data using quarkus with docker postgress db with hibernate orm
         Service service = this.serviceRepository.findById(2L);
         System.out.println(service);
 

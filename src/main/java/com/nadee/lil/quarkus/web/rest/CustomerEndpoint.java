@@ -12,6 +12,19 @@ import org.jboss.resteasy.reactive.RestQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * RestPath - to deal with path variables
+ * RestQuery - to deal with query parameters
+ * RestHeaders - to deal with headers
+ * RestCookies - to deal with cookies
+ * RestForm -  to deal with form input
+ * RESTful Endpoints API (Verb support annotations)- relies on JAX-RS standard (imperative REST - based)
+ *      GET - load
+ *      POST - create
+ *      PUT - update
+ *      DELETE - delete
+ * To view API specification -> http://localhost:8080/q/dev-v1/
+ */
 @Path("/rest/customers")
 @Produces("application/json")
 @Consumes("application/json")
