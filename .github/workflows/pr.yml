@@ -19,7 +19,7 @@ jobs:
       - run: echo "This repository has been cloned to the runner"
       - name: Auto-version
         id: auto-version
-        uses: nadeeshi/auto-version-action@v1.0.0
+        uses: nadeeshi/quarkus-basic/auto-version-action@v1.0.0
         with:
           github-token: ${{secrets.MY_GITHUB_TOKEN}}
       - run: echo "Version has updated"
