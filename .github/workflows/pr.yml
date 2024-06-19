@@ -19,7 +19,7 @@ jobs:
       #for versioning, this is major version 1
       - name: Auto-version
         id: auto-version
-        uses: nadeeshi/quarkus-basic/auto-version-action@v1
+        uses: nadeeshi/quarkus-basic/auto-version-action@v1.0.0
         with:
           github-token: ${{secrets.MY_GITHUB_TOKEN}}
 
