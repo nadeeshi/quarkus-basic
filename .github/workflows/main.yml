@@ -11,10 +11,10 @@ on:
 
 jobs:
   build-test-release:
-    name: Build, test and release
+    name: Build, test, and release
     runs-on: ubuntu-latest
     env:
-      github-token: ${{secrets.MY_GITHUB_TOKEN}}
+      GITHUB_TOKEN: ${{secrets.MY_GITHUB_TOKEN}}
     steps:
       - uses: actions/checkout@v3
         with:
