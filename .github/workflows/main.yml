@@ -35,6 +35,8 @@ jobs:
 
       - name: Test and Build
         run: ./mvnw --batch-mode clean verify -Drevision=${{ steps.auto-version.outputs.auto-version }}
+
+      # https://github.com/rymndhng/release-on-push-action
       - id: create-release
         uses: rymndhng/release-on-push-action@master
         with:

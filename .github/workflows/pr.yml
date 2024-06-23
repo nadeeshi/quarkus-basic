@@ -27,7 +27,7 @@ jobs:
       #  id: auto-version
       #  uses: nadeeshi/quarkus-basic/auto-version-action@v1.0.0
       #  with:
-      #    github-token: ${{secrets.MY_GITHUB_TOKEN}}
+      #    GITHUB_TOKEN: ${{secrets.MY_GITHUB_TOKEN}}
       - run: echo "Version has updated"
 
       - name: Set up JDK 17
