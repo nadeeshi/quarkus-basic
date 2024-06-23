@@ -1,0 +1,41 @@
+name: Main Workflow
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+    tags-ignore:
+      - v*
+
+jobs:
+  build-test-release:
+    name: Build, test and release
+    runs-on: ubuntu-latest
+    env:
+      github-token: ${{secrets.MY_GITHUB_TOKEN}}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      #- name: Auto-version
+      #  id: auto-version
+      #  uses: nadeeshi/quarkus-basic/auto-version-action@v1.0.0
+      #  with:
+      #    github-token: ${{secrets.MY_GITHUB_TOKEN}}
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Test and Build
+        run: ./mvnw --batch-mode clean verify -Drevision=${{ steps.auto-version.outputs.auto-version }}
+      - id: create-release
+        uses: rymndhng/release-on-push-action@master
+        with:
+          bump_version_scheme: patch
