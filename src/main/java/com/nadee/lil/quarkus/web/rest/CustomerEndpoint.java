@@ -23,9 +23,9 @@ import java.util.List;
  *      POST - create
  *      PUT - update
  *      DELETE - delete
- * To view API specification -> http://localhost:8080/q/dev-v1/
+ * To view API specification -> http://localhost:8021/q/dev-v1/
  */
-@Path("/rest/customers")
+@Path("/api/rest/customers")
 @Produces("application/json")
 @Consumes("application/json")
 public class CustomerEndpoint {
