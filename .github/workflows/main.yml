@@ -42,8 +42,10 @@ jobs:
         with:
           bump_version_scheme: patch
 
-      - name: Build docker
-        run: ./mvnw --batch-mode package -Dquarkus.container-image.build=true -Drevision=${{ steps.auto-version.outputs.auto-version }}
+      - name: Build docker images
+        run: |
+          ./mvnw --batch-mode package -Dquarkus.container-image.build=true -Drevision=${{ steps.auto-version.outputs.auto-version }}
+          docker build -t ${{ secrets.CONTAINER_IMAGE_REGISTRY }}/${{ secrets.CONTAINER_IMAGE_GROUP }}/quarkus-basic:latest .
         env:
           QUARKUS_CONTAINER_IMAGE_GROUP: ${{ vars.CONTAINER_IMAGE_GROUP }}
           QUARKUS_CONTAINER_IMAGE_REGISTRY: ${{ vars.CONTAINER_IMAGE_REGISTRY }}
