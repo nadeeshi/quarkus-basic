@@ -43,12 +43,15 @@ jobs:
           bump_version_scheme: patch
 
       - name: Build docker
-        run: ./mvnw --batch-mode package -Dquarkus.container-image.build=true -Drevision=${{ steps.auto-version.outputs.auto-version }}
+        run: ./mvnw --batch-mode package -Dquarkus.container-image.build=true -Drevision=${{ steps.auto-version.outputs.auto-version }} docker images
         env:
           QUARKUS_CONTAINER_IMAGE_GROUP: ${{ vars.CONTAINER_IMAGE_GROUP }}
           QUARKUS_CONTAINER_IMAGE_REGISTRY: ${{ vars.CONTAINER_IMAGE_REGISTRY }}
           QUARKUS_CONTAINER_IMAGE_TAG: ${{ steps.create-release.outputs.version }}
           QUARKUS_CONTAINER_IMAGE_ADDITIONAL_TAGS: latest
+
+      - name: List Docker images
+        run: docker images
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v2
@@ -64,6 +67,7 @@ jobs:
       - name: Release
         run: |
           echo "Pushing image to ECR..."
+          docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-basic:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/nr-backend/quarkus-basic:latest
           docker push ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-basic --all-tags
          
          
