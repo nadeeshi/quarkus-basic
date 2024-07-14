@@ -68,8 +68,8 @@ jobs:
       - name: Tag Docker image for ECR
         run: |
           echo "Tagging Docker image..."
-          docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-basic:${{ steps.create-release.outputs.version }} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/nr-backend/quarkus-basic:${{ steps.create-release.outputs.version }}
-          docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-basic:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/nr-backend/quarkus-basic:latest
+          docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}:${{ steps.create-release.outputs.version }} ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-basic:${{ steps.create-release.outputs.version }}
+          docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-basic:latest
 
       - name: List Docker images after tagging
         run: docker images
@@ -77,7 +77,7 @@ jobs:
       - name: Push Docker image to ECR (Release)
         run: |
           echo "Pushing image to ECR..."
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/nr-backend/quarkus-basic:${{ steps.create-release.outputs.version }}
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/nr-backend/quarkus-basic:latest
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-basic:${{ steps.create-release.outputs.version }}
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-basic:latest
          
          
