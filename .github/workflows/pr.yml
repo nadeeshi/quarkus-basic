@@ -40,3 +40,11 @@ jobs:
 
       - name: Test and Build
         run: ./mvnw --batch-mode clean verify -Drevision=${{ steps.auto-version.outputs.auto-version }}
+
+      - name: Build docker
+        run: ./mvnw --batch-mode package -Dquarkus.container-image.build=true -Drevision=${{ steps.auto-version.outputs.auto-version }}
+        env:
+          QUARKUS_CONTAINER_IMAGE_ADDITIONAL_TAGS: latest
+
+      - name: List images
+        run: docker images
