@@ -45,7 +45,6 @@ jobs:
       - name: Build docker images
         run: |
           ./mvnw --batch-mode package -Dquarkus.container-image.build=true
-          docker build -t ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-basic:latest .
         env:
           QUARKUS_CONTAINER_IMAGE_GROUP: ${{ vars.CONTAINER_IMAGE_GROUP }}
           QUARKUS_CONTAINER_IMAGE_REGISTRY: ${{ vars.CONTAINER_IMAGE_REGISTRY }}
