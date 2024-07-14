@@ -43,8 +43,7 @@ jobs:
           bump_version_scheme: patch
 
       - name: Build docker images
-        run: |
-          ./mvnw --batch-mode package -Dquarkus.container-image.build=true
+        run: ./mvnw package -Dquarkus.container-image.build=true -Dquarkus.container-image.tag=${{ steps.create-release.outputs.version }}
         env:
           QUARKUS_CONTAINER_IMAGE_GROUP: ${{ vars.CONTAINER_IMAGE_GROUP }}
           QUARKUS_CONTAINER_IMAGE_REGISTRY: ${{ vars.CONTAINER_IMAGE_REGISTRY }}
