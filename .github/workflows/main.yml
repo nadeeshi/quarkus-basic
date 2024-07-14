@@ -34,7 +34,7 @@ jobs:
           cache: 'maven'
 
       - name: Test and Build
-        run: ./mvnw --batch-mode clean verify -Drevision=${{ steps.auto-version.outputs.auto-version }}
+        run: ./mvnw --batch-mode clean verify
 
       # https://github.com/rymndhng/release-on-push-action
       - id: create-release
@@ -44,7 +44,7 @@ jobs:
 
       - name: Build docker images
         run: |
-          ./mvnw --batch-mode package -Dquarkus.container-image.build=true -Drevision=${{ steps.auto-version.outputs.auto-version }}
+          ./mvnw --batch-mode package -Dquarkus.container-image.build=true
           docker build -t ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-basic:latest .
         env:
           QUARKUS_CONTAINER_IMAGE_GROUP: ${{ vars.CONTAINER_IMAGE_GROUP }}
