@@ -75,6 +75,8 @@ jobs:
       - name: Push Docker image to ECR (Release)
         run: |
           echo "Pushing image to ECR..."
-          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-app:latest
+          docker push ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-app --all-tags
+         # docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-app:latest
+
          
          
