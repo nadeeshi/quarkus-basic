@@ -69,6 +69,16 @@
       <artifactId>quarkus-smallrye-graphql</artifactId>
     </dependency>
 
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-openapi</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.quarkus</groupId>
+      <artifactId>quarkus-smallrye-health</artifactId>
+    </dependency>
+
     <!--Build-in support for container image creation (By using this no need a separate Dockerfile) -->
     <dependency>
       <groupId>io.quarkus</groupId>
