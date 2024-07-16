@@ -11,6 +11,10 @@ import com.nadee.lil.quarkus.util.GreetingUtil;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
 import jakarta.enterprise.context.control.ActivateRequestContext;
+import jakarta.ws.rs.ApplicationPath;
+import jakarta.ws.rs.core.Application;
+import org.eclipse.microprofile.openapi.annotations.OpenAPIDefinition;
+import org.eclipse.microprofile.openapi.annotations.info.Info;
 
 import java.util.List;
 
@@ -84,3 +88,11 @@ public class QuarkusApp implements QuarkusApplication {
         return 0;
     }
 }*/
+
+@ApplicationPath("/")
+@OpenAPIDefinition(
+        info = @Info(
+                title = "NR System", version = "0.1")
+)
+public class QuarkusApp extends Application {
+}
