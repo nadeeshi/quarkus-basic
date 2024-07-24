@@ -64,18 +64,18 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Tag Docker image for ECR
-        run: |
-         echo "Tagging Docker image..."
-         docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/backend:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/nrapp/backend:latest
+      #- name: Tag Docker image for ECR
+      #  run: |
+      #  echo "Tagging Docker image..."
+      #   docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/backend:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/nrapp/backend:latest
 
-      - name: List Docker images after tagging
-        run: docker images
+      #- name: List Docker images after tagging
+      #  run: docker images
 
       - name: Push Docker image to ECR (Release)
         run: |
           echo "Pushing image to ECR..."
-          docker push ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/backend --all-tags
+          docker push ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-app --all-tags
          # docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/nrapp/backend:latest
 
          
