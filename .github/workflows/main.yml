@@ -58,7 +58,7 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-east-2
+          aws-region: eu-north-1
 
       - name: Login to Amazon ECR
         id: login-ecr
@@ -67,7 +67,7 @@ jobs:
      # - name: Tag Docker image for ECR
      #   run: |
      #    echo "Tagging Docker image..."
-     #    docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-app:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-app:latest
+     #    docker tag ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/backend:latest ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/nrapp/backend:latest
 
      # - name: List Docker images after tagging
      #   run: docker images
@@ -75,8 +75,8 @@ jobs:
       - name: Push Docker image to ECR (Release)
         run: |
           echo "Pushing image to ECR..."
-          docker push ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/quarkus-app --all-tags
-         # docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.us-east-2.amazonaws.com/nrapp/quarkus-app:latest
+          docker push ${{ vars.CONTAINER_IMAGE_REGISTRY }}/${{ vars.CONTAINER_IMAGE_GROUP }}/backend --all-tags
+         # docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.eu-north-1.amazonaws.com/nrapp/backend:latest
 
          
          
